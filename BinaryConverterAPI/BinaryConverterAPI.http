@@ -1,0 +1,6 @@
+@BinaryConverterAPI_HostAddress = http://localhost:5255
+
+GET {{BinaryConverterAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
