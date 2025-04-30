@@ -1,0 +1,13 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/BinaryConverterAPI/.vs/BinaryConverterAPI/FileContentIndex/01df4a98-f071-4533-adc4-b911337cd973.vsidx
+*.vsidx
+/BinaryConverterAPI/.vs/BinaryConverterAPI/FileContentIndex/2bc8ed48-e480-4956-981d-79bbda905cec.vsidx
+/BinaryConverterAPI/.vs/BinaryConverterAPI/FileContentIndex/4d917636-34d8-486b-9ac1-949ba2a0f3a8.vsidx
+/BinaryConverterAPI/.vs/BinaryConverterAPI/FileContentIndex/a79013ce-e08d-496a-81a2-4bce819a7097.vsidx
+/BinaryConverterAPI/.vs/BinaryConverterAPI/FileContentIndex/f839ef39-f8af-4565-88d4-0fbe91cc95a9.vsidx
+/BinaryConverterAPI/.vs/BinaryConverterAPI/v17/.suo
+/BinaryConverterAPI/.vs/BinaryConverterAPI/v17/DocumentLayout.backup.json
+/BinaryConverterAPI/.vs/BinaryConverterAPI/v17/DocumentLayout.json
