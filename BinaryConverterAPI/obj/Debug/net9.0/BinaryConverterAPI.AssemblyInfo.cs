@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BinaryConverterAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27b6a32679391c1cd51d93f80ead2c7f14b0f043")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86d2a8fc4043614e66143d62ffae30e916c465e3")]
 [assembly: System.Reflection.AssemblyProductAttribute("BinaryConverterAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BinaryConverterAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
