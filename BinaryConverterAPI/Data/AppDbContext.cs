@@ -7,6 +7,7 @@ namespace BinaryConverterAPI.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<BinaryConversion> Conversions => Set<BinaryConversion>();
+        public DbSet<BinaryConversion> BinaryConversions { get; set; }
     }
+
 }
