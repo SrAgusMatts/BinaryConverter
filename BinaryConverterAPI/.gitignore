@@ -1,0 +1,30 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Rider files
+.idea/
+
+# SQLite DB
+*.db
+
+# Logs
+*.log
+
+# User-specific files
+*.swp
+*.bak
+
+# dotnet CLI
+project.lock.json
+project.fragment.lock.json
+
+# Others
+*.pdb
+*.cache
+*.DS_Store
