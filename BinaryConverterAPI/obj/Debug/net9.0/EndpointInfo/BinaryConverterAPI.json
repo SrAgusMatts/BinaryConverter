@@ -35,6 +35,18 @@
           }
         }
       }
+    },
+    "/api/Binary/history": {
+      "get": {
+        "tags": [
+          "Binary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

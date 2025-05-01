@@ -1,4 +1,6 @@
 using BinaryConverterAPI.Data;
+using BinaryConverterAPI.Data.Interfaces;
+using BinaryConverterAPI.Data.Repositories;
 using BinaryConverterAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,8 +12,15 @@ builder.Services.AddScoped<BinaryService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//Conexion a la base datos - APPDbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=conversions.db"));
+
+//Intefaces
+builder.Services.AddScoped<IUOW, UOW>();
+builder.Services.AddScoped<IBinaryService, BinaryService>();
+
 
 builder.Services.AddCors(options =>
 {
