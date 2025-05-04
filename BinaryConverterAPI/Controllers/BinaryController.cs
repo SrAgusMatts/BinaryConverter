@@ -30,7 +30,7 @@ namespace BinaryConverterAPI.Controllers
         {
             var history = await _binaryService.GetAllAsync();
             return Ok(history);
-        }
+        } 
 
     }
 }
