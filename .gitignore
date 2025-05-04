@@ -15,3 +15,6 @@
 /BinaryConverterAPI/.vs/ProjectEvaluation/binaryconverterapi.projects.v9.bin
 /BinaryConverterAPI/.vs/ProjectEvaluation/binaryconverterapi.strings.v9.bin
 /BinaryConverterAPI/.vs/BinaryConverterAPI/DesignTimeBuild/.dtbcache.v2
+/BinaryConverterAPI/conversions.db-shm
+/BinaryConverterAPI/conversions.db-wal
+/BinaryConverterAPI/conversions.db

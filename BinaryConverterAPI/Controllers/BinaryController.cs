@@ -18,14 +18,16 @@ namespace BinaryConverterAPI.Controllers
             _context = context;
         }
 
-        [HttpPost("convert")]
+        [HttpPost]
+        [Route("Binario-a-Letra")]
         public async Task<IActionResult> ConvertBinary([FromBody] BinaryRequest request)
         {
             var result = await _binaryService.ConvertToAsciiAsync(request);
             return Ok(new BinaryResponse { Character = result });
         }
 
-        [HttpGet("history")]
+        [HttpGet]
+        [Route("Historial")]
         public async Task<IActionResult> GetHistory()
         {
             var history = await _binaryService.GetAllAsync();
