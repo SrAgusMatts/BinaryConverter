@@ -3,8 +3,9 @@
     public class BinaryConversion
     {
         public int Id { get; set; }
-        public string Binary { get; set; } = string.Empty;
-        public string Character { get; set; } = string.Empty;
-        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+        public string? BinaryInput { get; set; }
+        public string? Result { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;  
     }
+
 }

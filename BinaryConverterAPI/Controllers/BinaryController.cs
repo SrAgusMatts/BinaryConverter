@@ -19,12 +19,20 @@ namespace BinaryConverterAPI.Controllers
         }
 
         [HttpPost]
-        [Route("convert")]
-        public IActionResult ConvertBinary([FromBody] BinaryRequest request)
+        [Route("Binario-a-Letra")]
+        public async Task<IActionResult> ConvertBinary([FromBody] BinaryRequest request)
         {
-            var binaryInputForm = _binaryService.ConvertToAscii(request);
-
-            return Ok(new BinaryResponse { Character = binaryInputForm });
+            var result = await _binaryService.ConvertToAsciiAsync(request);
+            return Ok(new BinaryResponse { Character = result });
         }
+
+        [HttpGet]
+        [Route("Historial")]
+        public async Task<IActionResult> GetHistory()
+        {
+            var history = await _binaryService.GetAllAsync();
+            return Ok(history);
+        } 
+
     }
 }
