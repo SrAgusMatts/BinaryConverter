@@ -18,3 +18,8 @@
 /BinaryConverterAPI/conversions.db-shm
 /BinaryConverterAPI/conversions.db-wal
 /BinaryConverterAPI/conversions.db
+/BinaryConverterAPI/.vs/BinaryConverterAPI/FileContentIndex
+/BinaryConverterAPI/obj/Debug/net9.0/BinaryConverterAPI.AssemblyInfo.cs
+/BinaryConverterAPI/obj/Debug/net9.0/BinaryConverterAPI.AssemblyInfoInputs.cache
+/BinaryConverterAPI/.vs/BinaryConverterAPI/v17/.futdcache.v2
+/BinaryConverterAPI/conversions.db
