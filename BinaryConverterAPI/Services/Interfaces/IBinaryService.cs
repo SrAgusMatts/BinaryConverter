@@ -4,8 +4,8 @@ namespace BinaryConverterAPI.Services
 {
     public interface IBinaryService
     {
-        Task<string> ConvertToAsciiAsync(BinaryRequest binary);
-        Task<IEnumerable<BinaryConversion>> GetAllAsync();
+        PostResponse ConvertToAscii(BinaryRequest binary);
+        IEnumerable<ConversionLetras> GetAll();
     }
 
 }

@@ -14,14 +14,14 @@ namespace BinaryConverterAPI.Data.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public void Add(T entity)
         {
-            return await _dbSet.ToListAsync();
+            _dbSet.Add(entity);
         }
 
-        public async Task AddAsync(T entity)
+        public IEnumerable<T> GetAll()
         {
-            await _dbSet.AddAsync(entity);
+            return _dbSet.ToList();
         }
     }
 
