@@ -3,6 +3,7 @@ using BinaryConverterAPI.Data.Interfaces;
 using BinaryConverterAPI.Data.Repositories;
 using BinaryConverterAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using BinaryConverterAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,10 +39,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(); // Muestra Swagger en /swagger
+    app.UseSwaggerUI();
 }
 
 app.UseCors("AllowAll");
+
+// ?? AGREGÁ ESTE MIDDLEWARE
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthorization();
 app.MapControllers();

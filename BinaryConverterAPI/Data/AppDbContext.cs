@@ -7,7 +7,8 @@ namespace BinaryConverterAPI.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<BinaryConversion> BinaryConversions { get; set; }
+        public DbSet<ConversionLetras> ConversionLetras { get; set; }
+        public DbSet<ConversorBinaria> LetterConversions { get; set; }
     }
 
 }

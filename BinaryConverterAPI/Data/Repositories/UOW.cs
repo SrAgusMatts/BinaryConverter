@@ -7,17 +7,17 @@ namespace BinaryConverterAPI.Data.Repositories
     {
         private readonly AppDbContext _context;
 
-        public IRepository<BinaryConversion> BinaryConversions { get; }
+        public IRepository<ConversionLetras> ConversionLetras { get; }
 
         public UOW(AppDbContext context)
         {
             _context = context;
-            BinaryConversions = new Repository<BinaryConversion>(context);
+            ConversionLetras = new Repository<ConversionLetras>(context);
         }
 
-        public async Task<int> CompleteAsync()
+        public void Complete()
         {
-            return await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public void Dispose()

@@ -1,6 +1,6 @@
 ﻿namespace BinaryConverterAPI.Models
 {
-    public class BinaryConversion
+    public class ConversionLetras
     {
         public int Id { get; set; }
         public string? BinaryInput { get; set; }

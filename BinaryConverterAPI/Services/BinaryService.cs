@@ -12,38 +12,44 @@ namespace BinaryConverterAPI.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<string> ConvertToAsciiAsync(BinaryRequest binary)
+        public PostResponse ConvertToAscii(BinaryRequest binary)
         {
-            if (string.IsNullOrWhiteSpace(binary.BinaryInput) || binary.BinaryInput.Length != 8 || !binary.BinaryInput.All(c => c == '0' || c == '1'))
-                return "La cadena debe ser binaria y tener 8 dígitos.";
-
             try
             {
+                if (string.IsNullOrWhiteSpace(binary.BinaryInput) ||
+                binary.BinaryInput.Length != 8 ||
+                !binary.BinaryInput.All(c => c == '0' || c == '1'))
+                {
+                    throw new Exception("La cadena debe ser binaria y tener 8 dígitos.");
+                }
+
                 int asciiCode = Convert.ToInt32(binary.BinaryInput, 2);
                 char character = (char)asciiCode;
-                string result = character.ToString();
 
-                var conversion = new BinaryConversion
+                var conversion = new ConversionLetras
                 {
                     BinaryInput = binary.BinaryInput,
-                    Result = result
+                    Result = character.ToString()
                 };
 
-                await _unitOfWork.BinaryConversions.AddAsync(conversion);
-                await _unitOfWork.CompleteAsync();
+                _unitOfWork.ConversionLetras.Add(conversion);
+                _unitOfWork.Complete();
 
-                return result;
+                return new PostResponse { Id = conversion.Id };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error al convertir");
+                throw new Exception(ex.Message);
             }
+
         }
 
-        public async Task<IEnumerable<BinaryConversion>> GetAllAsync()
+
+        public IEnumerable<ConversionLetras> GetAll()
         {
-            return await _unitOfWork.BinaryConversions.GetAllAsync();
+            return _unitOfWork.ConversionLetras.GetAll();
         }
     }
+
 
 }
