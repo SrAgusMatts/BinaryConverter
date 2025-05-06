@@ -27,3 +27,16 @@ export const getConversionesLetras = async () => {
 
   return await response.json();
 };
+
+export const deleteBinary = async (id) => {
+  const response = await fetch(`${BASE_URL}/Binario/Borrar-Binario/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Error al momento de borrar el binario');
+  }
+
+  return await response.json();
+};
+

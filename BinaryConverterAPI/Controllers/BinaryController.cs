@@ -40,6 +40,14 @@ namespace BinaryConverterAPI.Controllers
             return Ok(list.ToList());
         }
 
+        [HttpDelete]
+        [Route("Borrar-Binario/{id}")]
+        public IActionResult DeleteBinary(int id)
+        {
+            DeleteResponse response = _binaryService.DeleteBinary(id);
+            return Ok(response);
+        }
+
         #endregion
 
         #region Entrada Letra y salida Binaria

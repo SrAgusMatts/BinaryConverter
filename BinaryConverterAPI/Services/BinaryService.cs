@@ -1,5 +1,6 @@
 ﻿using BinaryConverterAPI.Data.Interfaces;
 using BinaryConverterAPI.Models;
+using Microsoft.VisualBasic;
 
 namespace BinaryConverterAPI.Services
 {
@@ -44,12 +45,31 @@ namespace BinaryConverterAPI.Services
 
         }
 
-
         public IEnumerable<ConversionLetras> GetAll()
         {
             return _unitOfWork.ConversionLetras.GetAll();
         }
+
+        public DeleteResponse DeleteBinary(int id)
+        {
+            try
+            {
+
+                var result = _unitOfWork.ConversionLetras.GetById(id);
+
+                _unitOfWork.ConversionLetras.Delete(result);
+                _unitOfWork.Complete();
+
+                return new DeleteResponse { Message = "Se ha eliminado exitosamente" };
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            
+        }
+
     }
-
-
 }
