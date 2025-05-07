@@ -2,6 +2,8 @@ import { useState } from 'react';
 import BinaryForm from './config/BinaryForm';
 import HistorialTable from './config/HistorialTable';
 import './app.css';
+import HistorialTableLetter from './config/HistorialTableLetter';
+import LetterForm from './config/LetterForm';
 
 
 function App() {
@@ -14,6 +16,9 @@ function App() {
 
   return (
     <div className="container">
+
+      <div className="converter-section">
+
       <BinaryForm onConvertSuccess={handleSuccess} 
       reloadTrigger={reloadTrigger}
       setReloadTrigger={setReloadTrigger}
@@ -22,7 +27,25 @@ function App() {
         reloadTrigger={reloadTrigger}
         setReloadTrigger={setReloadTrigger}
       />
+
+      </div>
+      
+      <div className="converter-section">
+
+      <LetterForm onConvertSuccess={handleSuccess} 
+      reloadTrigger={reloadTrigger}
+      setReloadTrigger={setReloadTrigger}
+      />
+      <HistorialTableLetter
+        reloadTrigger={reloadTrigger}
+        setReloadTrigger={setReloadTrigger}
+      />
+
+      </div>
+
+
     </div>
+    
   );
 }
 

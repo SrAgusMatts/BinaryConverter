@@ -4,6 +4,7 @@ using BinaryConverterAPI.Data.Repositories;
 using BinaryConverterAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using BinaryConverterAPI.Middleware;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +14,17 @@ builder.Services.AddScoped<BinaryService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+});
+
+
 
 //Conexion a la base datos - APPDbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=conversions.db"));
+    options.UseSqlServer("Server=DESKTOP-HDC0QQP;Database=ConversionsDb;Trusted_Connection=True;TrustServerCertificate=True;"));
+
 
 //Intefaces
 builder.Services.AddScoped<IUOW, UOW>();
@@ -49,5 +57,6 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthorization();
 app.MapControllers();
+
 
 app.Run();

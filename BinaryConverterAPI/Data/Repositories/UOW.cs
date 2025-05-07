@@ -9,10 +9,13 @@ namespace BinaryConverterAPI.Data.Repositories
 
         public IRepository<ConversionLetras> ConversionLetras { get; }
 
+        public IRepository<ConversorBinaria> ConversionBinaria { get; }
+
         public UOW(AppDbContext context)
         {
             _context = context;
             ConversionLetras = new Repository<ConversionLetras>(context);
+            ConversionBinaria = new Repository<ConversorBinaria>(context);
         }
 
         public void Complete()

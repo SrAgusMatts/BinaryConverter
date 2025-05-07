@@ -8,6 +8,13 @@ namespace BinaryConverterAPI.Data.Interfaces
         void Add(T entity);
         ConversionLetras GetById(int id);
         void Delete(ConversionLetras entity);
+        void Update(ConversionLetras entity);
+
+        IEnumerable<T> GetAllLetter();
+        void AddLetter(T entity);
+        ConversorBinaria GetByIdLetter(int id);
+        void DeleteLetter(ConversorBinaria entity);
+        void UpdateLetter(ConversorBinaria entity);
     }
 
 }

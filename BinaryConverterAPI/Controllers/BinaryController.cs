@@ -2,6 +2,7 @@
 using BinaryConverterAPI.Services;
 using BinaryConverterAPI.Models;
 using BinaryConverterAPI.Data;
+using BinaryConverterAPI.Models.NewFolder;
 
 namespace BinaryConverterAPI.Controllers
 {
@@ -11,7 +12,7 @@ namespace BinaryConverterAPI.Controllers
     {
         #region Private
         private readonly AppDbContext _context;
-        private readonly BinaryService _binaryService;
+        private readonly IBinaryService _binaryService;
         #endregion
 
         #region Injeccion
@@ -36,15 +37,31 @@ namespace BinaryConverterAPI.Controllers
         [Route("Conversiones")]
         public IActionResult GetAllConversions()
         {
-            var list = _binaryService.GetAll();
-            return Ok(list.ToList());
+            var response = _binaryService.GetAll();
+            return Ok(response.ToList());
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetById(int id)
+        {
+            BinaryResponseDTO response = _binaryService.GetById(id);
+            return Ok(response);
         }
 
         [HttpDelete]
-        [Route("Borrar-Binario/{id}")]
+        [Route("{id}")]
         public IActionResult DeleteBinary(int id)
         {
             DeleteResponse response = _binaryService.DeleteBinary(id);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("Actualizar-Binario/{id}")]
+        public IActionResult UpdateBinary(int id, [FromBody] BinaryRequest request)
+        {
+            UpdateResponse response = _binaryService.UpdateBinary(request, id);
             return Ok(response);
         }
 
@@ -54,18 +71,42 @@ namespace BinaryConverterAPI.Controllers
 
         [HttpPost]
         [Route("Letra-a-binario")]
-        public IActionResult ConvertLetter([FromBody] BinaryRequest request)
+        public IActionResult ConvertLetter([FromBody] LetterRequest request)
         {
-            PostResponse response = _binaryService.ConvertToAscii(request);
+            PostResponse response = _binaryService.ConvertToAsciiLetter(request);
             return Ok(response);
         }
 
         [HttpGet]
-        [Route("Historial-binario")]
-        public IActionResult GetHistoryBinary()
+        [Route("Historial-letras")]
+        public IActionResult GetHistoryLetter()
         {
-            var history = _binaryService.GetAll();
+            var history = _binaryService.GetAllLetter();
             return Ok(history);
+        }
+
+        [HttpGet]
+        [Route("IdLetra/{id}")]
+        public IActionResult GetByIdLetter(int id)
+        {
+            LetterResponseDTO response = _binaryService.GetByIdLetter(id);
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("Eliminar-Letra/{id}")]
+        public IActionResult DeleteLetter(int id)
+        {
+            DeleteResponse response = _binaryService.DeleteLetter(id);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("Actualizar-Letra/{id}")]
+        public IActionResult UpdateLetter(int id, [FromBody] LetterRequest request)
+        {
+            UpdateResponse response = _binaryService.UpdateLetter(request, id);
+            return Ok(response);
         }
 
         #endregion
