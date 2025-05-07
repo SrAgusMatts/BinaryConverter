@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { getConversionesLetras, deleteBinary, updateBinary } from '../assets/api';
+import { getConversionesBinarias, deleteLetter, updateLetter } from '../assets/api';
 
-const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
+const HistorialTableLetter = ({ reloadTrigger, setReloadTrigger  }) => {
   const [historial, setHistorial] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalUpdate, setIsModalUpdate] = useState(false);
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
-  const [newBinary, setNewBinary] = useState('');
+  const [newLetter, setNewLetter] = useState('');
   const [error, setError] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -16,7 +16,7 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
     const fetchHistorial = async () => {
       setLoading(true);
       try {
-        const data = await getConversionesLetras();
+        const data = await getConversionesBinarias();
         setHistorial(data);
       } catch (err) {
         console.error(err);
@@ -31,7 +31,7 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const data = await deleteBinary(currentItem);
+      const data = await deleteLetter(currentItem);
       setSuccessMessage('Elemento eliminado correctamente.');
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
@@ -50,13 +50,13 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
 
   const openEditModal = (item) => {
     setCurrentItem(item);
-    setNewBinary(item.binaryInput);
+    setNewLetter(item.letterInput);
     setIsModalUpdate(true);
   };
 
   const openDeleteModal = (item) => {
     setCurrentItem(item);
-    setNewBinary(item.binaryInput);
+    setNewLetter(item.letterInput);
     setIsModalDelete(true);
   };
 
@@ -65,12 +65,12 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
     try {
 
       const dataToUpdate = {
-        binaryInput: newBinary,     // ¡coincide con BinaryInput!
-        claveBinaria: currentItem.claveUsada,      // ¡coincide con ClaveBinaria!
+        letterInput: newLetter,     
+        claveBinaria: currentItem.claveUsadaLetra,      // ¡coincide con ClaveBinaria!
         operador: currentItem.operador,       // ¡igual!
       };
 
-      const data = await updateBinary(currentItem.id, dataToUpdate);
+      const data = await updateLetter(currentItem.id, dataToUpdate);
       setSuccessMessage('Elemento actualizado correctamente.');
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
@@ -111,6 +111,7 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
       <table>
       <thead>
         <tr>
+          <th>Letra</th>
           <th>Binario</th>
           <th>Clave</th>
           <th>Operador</th>
@@ -123,11 +124,12 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
         <tbody>
           {historial.map((item, index) => (
             <tr key={index}>
-              <td>{item.binaryInput}</td>
-              <td>{item.claveUsada}</td>
+              <td>{item.textoEntrada}</td>
+              <td>{item.resultadoBinario}</td>
+              <td>{item.claveUsadaLetra}</td>
               <td>{item.operador}</td>
               <td>{item.resultadoBinario}</td>
-              <td>{item.result}</td>
+              <td>{item.resultadoEnFormatoLetra}</td>
               <td  class="table-buttons">
                 <button className="btn-delete" onClick={() => openDeleteModal(item.id)}>Eliminar</button>
                 <button className="btn-edit" onClick={() => openEditModal(item)}>Modificar</button>
@@ -141,12 +143,12 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
       {isModalUpdate && (
         <div className="modal">
           <div className="modal-content">
-            <h3>Modificar Binario</h3>
+            <h3>Modificar Letra</h3>
             <input
               type="text"
-              value={newBinary}
-              onChange={(e) => setNewBinary(e.target.value)}
-              placeholder="Nuevo binario"
+              value={newLetter}
+              onChange={(e) => setNewLetter(e.target.value)}
+              placeholder="Nueva Letra"
               maxLength={8}
             />
             <div className="modal-buttons">
@@ -163,7 +165,7 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
             <h3>Eliminar Binario</h3>
             <p>
               ¿Estás seguro de que deseas eliminar el binario{" "}
-              <strong>{currentItem?.binaryInput}</strong>?
+              <strong>{currentItem?.letterInput}</strong>?
             </p>
             <div className="modal-buttons">
               <button onClick={handleDelete}>Eliminar</button>
@@ -186,4 +188,4 @@ const HistorialTable = ({ reloadTrigger, setReloadTrigger  }) => {
 
 
 
-export default HistorialTable;
+export default HistorialTableLetter;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { convertBinary } from '../assets/api';
+import { convertBinary, convertLetter } from '../assets/api';
 
-const BinaryForm = ({ onConvertSuccess, setReloadTrigger }) => {
-  const [binary, setBinary] = useState('');
+const LetterForm = ({ onConvertSuccess, setReloadTrigger }) => {
+  const [letter, setLetter] = useState('');
   const [clave, setClave] = useState('');
   const [operador, setOperador] = useState('XOR');
   const [ascii, setAscii] = useState('');
@@ -14,8 +14,8 @@ const BinaryForm = ({ onConvertSuccess, setReloadTrigger }) => {
     setAscii('');
     setLoading(true);
 
-    if (!/^[01]{8}$/.test(binary)) {
-      setError('El binario debe tener exactamente 8 dígitos (0 o 1).');
+    if (letter.length > 1) {
+      setError('Ingrese solo un caracter');
       setLoading(false);
       return;
     }
@@ -28,12 +28,13 @@ const BinaryForm = ({ onConvertSuccess, setReloadTrigger }) => {
 
     try {
       const requestBody = {
-        binaryInput: binary,
+        letterInput: letter,
         claveBinaria: clave,
         operador: operador
       };
 
-      const data = await convertBinary(requestBody);
+
+      const data = await convertLetter(requestBody);
       setAscii(data.character || 'Conversión exitosa.');
       onConvertSuccess();
       setReloadTrigger(Date.now());
@@ -46,14 +47,14 @@ const BinaryForm = ({ onConvertSuccess, setReloadTrigger }) => {
 
   return (
     <div className="container">
-  <h2>Conversor Binario a ASCII</h2>
+  <h2>Conversor Letra a Binario+ASCII</h2>
 
   <div className="converter-group">
     <input
       type="text"
-      value={binary}
-      onChange={(e) => setBinary(e.target.value)}
-      placeholder="Ingrese el binario (8 bits)"
+      value={letter}
+      onChange={(e) => setLetter(e.target.value)}
+      placeholder="Ingrese un letra (1 caracter)"
       maxLength={8}
     />
 
@@ -84,4 +85,4 @@ const BinaryForm = ({ onConvertSuccess, setReloadTrigger }) => {
   );
 };
 
-export default BinaryForm;
+export default LetterForm;

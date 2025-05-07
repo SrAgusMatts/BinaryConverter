@@ -1,4 +1,4 @@
-﻿namespace BinaryConverterAPI.Models
+﻿namespace BinaryConverterAPI.Models.NewFolder
 {
     public class PostResponse
     {

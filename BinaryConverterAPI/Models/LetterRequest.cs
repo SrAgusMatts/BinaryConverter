@@ -1,8 +1,8 @@
 ﻿namespace BinaryConverterAPI.Models
 {
-    public class BinaryRequest
+    public class LetterRequest
     {
-        public string BinaryInput { get; set; }
+        public string LetterInput { get; set; }
         public string ClaveBinaria { get; set; }
         public string Operador { get; set; }
     }
