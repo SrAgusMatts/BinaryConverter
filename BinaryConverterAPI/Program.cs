@@ -37,9 +37,9 @@ builder.Services.AddScoped<IBinaryService, BinaryService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("https://binary-converter-psi.vercel.app/") // tu URL real de Vercel
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
