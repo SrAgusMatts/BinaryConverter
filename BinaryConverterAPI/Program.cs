@@ -39,7 +39,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("https://binary-converter-psi.vercel.app/") // tu URL real de Vercel
+        policy.WithOrigins("https://binary-converter-psi.vercel.app") // tu URL real de Vercel
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
