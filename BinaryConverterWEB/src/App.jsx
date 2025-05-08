@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import BinaryForm from './config/BinaryForm';
 import HistorialTable from './config/HistorialTable';
-import './app.css';
+import './App.css';
 import HistorialTableLetter from './config/HistorialTableLetter';
 import LetterForm from './config/LetterForm';
 
