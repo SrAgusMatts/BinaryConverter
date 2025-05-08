@@ -22,8 +22,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 
 //Conexion a la base datos - APPDbContext
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer("Server=DESKTOP-HDC0QQP;Database=ConversionsDb;Trusted_Connection=True;TrustServerCertificate=True;"));
+    options.UseNpgsql(connectionString)); // O .UseSqlServer() si usás SQL Server
+
+
 
 
 //Intefaces
@@ -55,6 +59,7 @@ app.UseCors("AllowAll");
 // ?? AGREGÁ ESTE MIDDLEWARE
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
