@@ -52,7 +52,7 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 
-app.UseCors("AllowAll");
+app.UseCors("AllowFrontend");
 
 // ?? AGREGÁ ESTE MIDDLEWARE
 app.UseMiddleware<ErrorHandlingMiddleware>();
